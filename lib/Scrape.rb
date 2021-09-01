@@ -1,6 +1,6 @@
 
 def scrape
-    puts "Hello_world from the Scrape file"
+    puts "Hello_World from the Scrape file"
     
 end
 
@@ -20,30 +20,37 @@ class Scrape
     end
 
 
-    def audi_selector
-      audi_colum =  get_body.css("div.carmodels.col23width.clearfix")
-      audi_colum.map.with_index(1) do |audi|
-         y = audi.css("div.carmod.clearfix")
-         y.map do |name|
-            name.css("h4").text
+    def info_selector
+      car_models =  get_body.css("div.carmodels.col23width.clearfix")
+      car_models.map.with_index(1) do |car|
+         y = car.css("div.carmod.clearfix")
+         y.map do |car_data|
+            car_data.css("h4").text
+            
             
          end
       end
     end
 
-    def honda_selector
-        honda_colum =  get_body.css("div.carmodels.col23width.clearfix")
-        honda_colum.map.with_index(1) do |honda|
-           y = honda.css("div.carmod.clearfix")
-           y.map do |name|
-              name.css("h4").text
-              
-           end
+    def car_brands
+        options = []
+        brand = get_body.css("div.container.carlist.clearfix")
+        brand.map do |brands|
+            y = brands.css("div.col2width.fl.bcol-white.carman")
+            y.map do |brand_info|
+                 options << brand_info.css("span").text
+                 options << brand_info.css("a").first["href"]
+                
+                
+
+
+            end
         end
-      end
+        options
+    end
 
 
-
+   
 
 
 

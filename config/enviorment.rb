@@ -1,6 +1,7 @@
 require "./lib/scrape.rb"
 
 
+
 require "pry"
 require "awesome_print"
 require "open-uri"
@@ -14,5 +15,5 @@ require "nokogiri"
 
 
 def enviorment
-    puts "hello_world from enviorment file"
+    puts "Hello_World from enviorment file"
 end
