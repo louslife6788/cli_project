@@ -8,6 +8,7 @@ require "open-uri"
 require "json"
 require "net/http"
 require "nokogiri"
+require "colorize"
 
 
 

@@ -5,4 +5,4 @@ steps
 3: set up scraping object methods to  specific info 
 4: have fun !
 5: work on saving the ifo scraped in organized manner
-
+6: use select_brand to scrape to get a list of cars

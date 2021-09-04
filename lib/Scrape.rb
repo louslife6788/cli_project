@@ -7,7 +7,7 @@ end
 
 class Scrape 
 
-    attr_reader :info , :headers
+    attr_reader :info , :headers, :url
 
     def initialize(url)
         @url = url
@@ -32,7 +32,7 @@ class Scrape
             # binding.pry
         end
       end
-     puts models
+      models
     end
 
     def car_brands
@@ -47,11 +47,33 @@ class Scrape
                 
             end
         end
-        puts options
+         options
+    end
+
+    def model_choices
+        
+        x = 1 
+        self.info_selector.each  do |car|
+            puts "#{x}//#{car[:name]}"
+            x += 1
+            # binding.pry
+        end 
     end
 
 
+    def brand_choices
+        self.car_brands.each.with_index do |brand, i|
+            puts "(#{i}). #{brand[:name]}".white.on_red
+        end
+    end
    
+    
+    def select_brand(user_input)
+
+        self.car_brands[user_input][:link]
+     end
+
+         
 
 
 

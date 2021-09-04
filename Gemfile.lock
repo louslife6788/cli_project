@@ -3,7 +3,7 @@ GEM
   specs:
     awesome_print (1.9.2)
     coderay (1.1.3)
-    json (2.5.1)
+    colorize (0.8.1)
     method_source (1.0.0)
     nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
@@ -18,7 +18,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  json
+  colorize
   nokogiri
   open-uri
   pry

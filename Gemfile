@@ -11,6 +11,7 @@ gem "pry"
 gem "awesome_print"
 gem 'nokogiri'
 gem "open-uri"
+gem "colorize"
 
 
 
