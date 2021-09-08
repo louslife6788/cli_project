@@ -1,12 +1,19 @@
 
 require "./config/enviorment.rb"
 
-car_brand = Scrape.new("https://www.autoevolution.com/cars/")
-car_brand.brand_choices
+
+brand_url =("https://www.autoevolution.com/cars/")
+
+
+website = Scrape.new
+website.brand_choices("https://www.autoevolution.com/cars/")
 puts "Anika please select a brand using 1 to 117?".white.on_blue
 
 input = gets.to_i
-puts car_brand.select_brand(input).yellow
+brand = website.select_brand(input)
+
+website.model_choices(brand)
+
 
 
 

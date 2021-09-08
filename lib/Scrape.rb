@@ -9,20 +9,19 @@ class Scrape
 
     attr_reader :info , :headers, :url
 
-    def initialize(url)
-        @url = url
-    end
+    
 
-    def get_body
-        html = open(@url)
+    def get_body(url)
+        html = open(url)
         home_page = Nokogiri::HTML(html)
         
     end
 
 
-    def info_selector
+    def info_selector(url)
+
         models = []
-      car_models =  get_body.css("div.carmodels.col23width.clearfix")
+      car_models =  get_body(url).css("div.carmodels.col23width.clearfix")
       car_models.map.with_index(1) do |car|
          y = car.css("div.carmod.clearfix")
          y.map do |car_data|
@@ -35,9 +34,9 @@ class Scrape
       models
     end
 
-    def car_brands
+    def car_brands(url)
         options = []
-        brand = get_body.css("div.container.carlist.clearfix")
+        brand = get_body(url).css("div.container.carlist.clearfix")
         brand.map do |brands|
             y = brands.css("div.col2width.fl.bcol-white.carman")
             y.map do |brand_info|
@@ -50,27 +49,23 @@ class Scrape
          options
     end
 
-    def model_choices
-        
-        x = 1 
-        self.info_selector.each  do |car|
-            puts "#{x}//#{car[:name]}"
-            x += 1
-            # binding.pry
+    def model_choices(url)
+        self.info_selector(url).each.with_index  do |car, i |
+            puts "(#{i}).#{car[:name]}".white.on_red
+           
         end 
     end
 
 
-    def brand_choices
-        self.car_brands.each.with_index do |brand, i|
+    def brand_choices(url)
+        self.car_brands(url).each.with_index do |brand, i|
             puts "(#{i}). #{brand[:name]}".white.on_red
         end
     end
    
     
-    def select_brand(user_input)
-
-        self.car_brands[user_input][:link]
+    def select_brand(url ="https://www.autoevolution.com/cars/", user_input)
+        self.car_brands(url)[user_input][:link]
      end
 
          
