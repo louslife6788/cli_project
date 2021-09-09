@@ -2,7 +2,7 @@
 require "./config/enviorment.rb"
 
 
-cars
+
 
 
 brand_url =("https://www.autoevolution.com/cars/")
