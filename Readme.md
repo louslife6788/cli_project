@@ -6,3 +6,4 @@ steps
 4: have fun !
 5: work on saving the ifo scraped in organized manner
 6: use select_brand to scrape to get a list of cars
+7:use list of info to make objects of cars for models
