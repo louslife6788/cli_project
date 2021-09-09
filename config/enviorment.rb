@@ -1,6 +1,5 @@
 require "./lib/scrape.rb"
-
-
+require './lib/Car.rb'
 
 require "pry"
 require "awesome_print"
