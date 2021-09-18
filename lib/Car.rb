@@ -1,4 +1,6 @@
 class Car
+
+    attr_accessor :link, :name, :hp
     @@all = []
 
 

@@ -49,8 +49,16 @@ class Scrape
          options
     end
 
+    def each_model(url)
+        option = []
+
+
+
+
+    end
+
     def model_choices(url)
-        self.info_selector(url).each.with_index  do |car, i |
+        self.info_selector(url).each.with_index(1)  do |car, i |
             puts "(#{i}).#{car[:name]}".white.on_red
            
         end 
@@ -58,7 +66,7 @@ class Scrape
 
 
     def brand_choices(url)
-        self.car_brands(url).each.with_index do |brand, i|
+        self.car_brands(url).each.with_index(1) do |brand, i|
             puts "(#{i}). #{brand[:name]}".white.on_red
         end
     end
@@ -68,17 +76,85 @@ class Scrape
         self.car_brands(url)[user_input][:link]
      end
 
-         
+
+    def select_model(url, user_input)
+        
+        self.info_selector(url)[user_input][:link]
+
+    end
 
 
 
- 
+    def collect_car(url)
+        cars = []
+        block = self.get_body(url).css("div#pagewrapper")
+        block.map  do |car|
+            each_car = car.css("div.container.carmodel.clearfix")
+            each_car.map do |atrib|
+                title = atrib.css("a").first["title"]
+                power = atrib.css("span.col-green2").text
+                info = atrib.css("p.txt").text
+
+                cars << [title[..-18], info, power]
+
+            end
+        end
+        puts cars[0][0].blue.on_white
+        puts cars[0][2].green.on_white
+        puts cars[0][1].blue.on_white
+       
+    end 
+
 
 end
 
 
 
 
+def run_car
 
+    website = Scrape.new
+    website.brand_choices("https://www.autoevolution.com/cars/")
+    puts "Lou please select a brand using 1 to 118?".white.on_blue
+    input = gets.to_i
+    if input != input.to_i || input == 0 || input > 118
+        run_car
+    else
+        brand = website.select_brand(input-1)
+        website.model_choices(brand)
+        
+        
+        puts "please selcect a model using the index number".white.on_blue
+        input = gets.to_i
+        if input != input.to_i || input == 0 || input > website.model_choices(brand).size 
+            run_car
+        else
+             model = website.select_model(brand, input-1)
+             website.collect_car(model)
+             puts "Would You like to find another car? (Y/N)".red
+             input = gets.chomp.upcase
+             if input.include?("Y")
+                run_car
+             else
+                stop
+             end
+
+             
+        end
+
+
+    end
+
+
+
+
+end
+
+
+def stop
+     
+    puts "OK , SEE YOU LATER ".yellow
+
+end
 
 
