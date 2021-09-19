@@ -1,1 +1,1 @@
-th eprogram allows you to use select cars using index numbers listed in the cli and gives the name of the car the years the car was made and the engine options and hp ratings and brief description of the car then asks if i want to contine untill you say no
+the program allows you to use select cars using index numbers listed in the cli and gives the name of the car the years the car was made and the engine options and hp ratings and brief description of the car then asks if i want to contine untill you say no
