@@ -99,9 +99,16 @@ class Scrape
 
             end
         end
-        puts cars[0][0].blue.on_white
-        puts cars[0][2].green.on_white
-        puts cars[0][1].blue.on_white
+        cars.each do |veh|
+            puts veh[0].red.on_white
+            puts veh[2].green.on_white
+            puts veh[1].blue.on_white
+            puts "********************************************"
+        end
+        
+        # puts cars[0][0].blue.on_white
+        # puts cars[0][2].green.on_white
+        # puts cars[0][1].blue.on_white
        
     end 
 
